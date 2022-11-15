@@ -29,3 +29,15 @@ model pool{
 model users{
   id String @id @default(cuid())
 }
+
+model games{
+  id String @id @default(cuid())
+}
+
+model participant{
+  id String @id @default(cuid())//
+}
+
+model guess{
+  id String @id @default(cuid())
+}
