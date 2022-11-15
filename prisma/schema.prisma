@@ -25,3 +25,7 @@ model pool{
   code String @unique
   createdAt DateTime @default(now())//anota a data atual de quando bolao  for criado
 }
+
+model users{
+  id String @id @default(cuid())
+}
