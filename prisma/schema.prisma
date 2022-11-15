@@ -28,6 +28,11 @@ model pool{
 
 model users{
   id String @id @default(cuid())
+
+  name String
+  email String @unique //pra um usuario só conseguir ter uma conta com o mesmo email
+  avatarUrl String? //esse ponto de interrogacao diz que o valor pode ser nulo
+  createdAt DateTime @default(now())
 }
 
 model games{
