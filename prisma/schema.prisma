@@ -37,6 +37,10 @@ model users{
 
 model games{
   id String @id @default(cuid())
+  date DateTime
+  // tem uma api no js que com o isocode do pais te retorna o nome inteiro do pais por isso vamos armazenar ele assim
+  firstTeamCountryCode String
+  secondTeamCountryCode String
 }
 
 model participant{
