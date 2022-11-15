@@ -17,7 +17,7 @@ datasource db {
 }
 
 
-model pool{
+model Pool{
 
   // esse @id indica pro prisma que o id vai ser pk (primeryKey)
   id String @id @default(cuid())// gera automaticamente o id 
@@ -26,7 +26,7 @@ model pool{
   createdAt DateTime @default(now())//anota a data atual de quando bolao  for criado
 }
 
-model users{
+model Users{
   id String @id @default(cuid())
 
   name String
@@ -35,7 +35,7 @@ model users{
   createdAt DateTime @default(now())
 }
 
-model games{
+model Games{
   id String @id @default(cuid())
   date DateTime
   // tem uma api no js que com o isocode do pais te retorna o nome inteiro do pais por isso vamos armazenar ele assim
@@ -43,13 +43,15 @@ model games{
   secondTeamCountryCode String
 }
 
-model participant{
+model Participant{
   id String @id @default(cuid())//
 }
 
-model guess{
+model Guess{
   id String @id @default(cuid())
   firstteamPoints Int
   secondTeanPoints Int
   createdAt DateTime @default(now())
+
+  
 }
