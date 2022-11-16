@@ -16,10 +16,11 @@ datasource db {
 
 model Pool {
   // esse @id indica pro prisma que o id vai ser pk (primeryKey)
-  id          String        @id @default(cuid()) // gera automaticamente o id 
-  title       String
-  code        String        @unique
-  createdAt   DateTime      @default(now()) //anota a data atual de quando bolao  for criado
+  id        String   @id @default(cuid()) // gera automaticamente o id 
+  title     String
+  code      String   @unique
+  createdAt DateTime @default(now()) //anota a data atual de quando bolao  for criado
+
   Participant Participant[]
 }
 
