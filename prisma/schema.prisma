@@ -16,10 +16,11 @@ datasource db {
 
 model Pool {
   // esse @id indica pro prisma que o id vai ser pk (primeryKey)
-  id        String   @id @default(cuid()) // gera automaticamente o id 
-  title     String
-  code      String   @unique
-  createdAt DateTime @default(now()) //anota a data atual de quando bolao  for criado
+  id          String        @id @default(cuid()) // gera automaticamente o id 
+  title       String
+  code        String        @unique
+  createdAt   DateTime      @default(now()) //anota a data atual de quando bolao  for criado
+  Participant Participant[]
 }
 
 model User {
@@ -29,6 +30,8 @@ model User {
   email     String   @unique //pra um usuario só conseguir ter uma conta com o mesmo email
   avatarUrl String? //esse ponto de interrogacao diz que o valor pode ser nulo
   createdAt DateTime @default(now())
+
+  participants Participant[]
 }
 
 model Game {
@@ -42,9 +45,13 @@ model Game {
 }
 
 model Participant {
-  id String @id @default(cuid()) //
+  id     String @id @default(cuid()) //
+  userId String
+  poolId String
 
   guesses Guess[]
+  user    User    @relation(fields: [userId], references: [id])
+  pool    Pool    @relation(fields: [poolId], references: [id])
 }
 
 model Guess {
