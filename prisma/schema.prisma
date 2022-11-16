@@ -20,6 +20,9 @@ model Pool {
   title     String
   code      String   @unique
   createdAt DateTime @default(now()) //anota a data atual de quando bolao  for criado
+  ownerId   String?
+
+  owner User? @relation(fields: [ownerId], references: [id])
 
   Participant Participant[]
 }
@@ -33,6 +36,7 @@ model User {
   createdAt DateTime @default(now())
 
   participants Participant[]
+  Pool         Pool[]
 }
 
 model Game {
