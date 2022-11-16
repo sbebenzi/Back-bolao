@@ -37,11 +37,14 @@ model Game {
   // tem uma api no js que com o isocode do pais te retorna o nome inteiro do pais por isso vamos armazenar ele assim
   firstTeamCountryCode  String
   secondTeamCountryCode String
-  Guess                 Guess[]
+
+  guesses Guess[]
 }
 
 model Participant {
   id String @id @default(cuid()) //
+
+  guesses Guess[]
 }
 
 model Guess {
@@ -49,6 +52,9 @@ model Guess {
   firstteamPoints  Int
   secondTeanPoints Int
   createdAt        DateTime @default(now())
-  game             Game     @relation(fields: [gameId], references: [id])
   gameId           String
+  participantId    String
+
+  participant Participant @relation(fields: [participantId], references: [id])
+  game        Game        @relation(fields: [gameId], references: [id])
 }
