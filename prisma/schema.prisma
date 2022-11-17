@@ -58,7 +58,7 @@ model Participant {
   user    User    @relation(fields: [userId], references: [id])
   pool    Pool    @relation(fields: [poolId], references: [id])
 
-  @@unique([userId, poolId])
+  @@unique([userId, poolId]) // diz que um usuario só pode participar uma vez em cada bolao
 }
 
 model Guess {
