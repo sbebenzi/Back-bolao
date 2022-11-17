@@ -35,8 +35,8 @@ model User {
   avatarUrl String? //esse ponto de interrogacao diz que o valor pode ser nulo
   createdAt DateTime @default(now())
 
-  participants Participant[]
-  Pool         Pool[]
+  participatingAt Participant[]
+  ownPool         Pool[]
 }
 
 model Game {
@@ -57,6 +57,8 @@ model Participant {
   guesses Guess[]
   user    User    @relation(fields: [userId], references: [id])
   pool    Pool    @relation(fields: [poolId], references: [id])
+
+  @@unique([userId, poolId])
 }
 
 model Guess {
