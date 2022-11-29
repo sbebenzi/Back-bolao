@@ -25,7 +25,7 @@ model Pool {
 
   owner User? @relation(fields: [ownerId], references: [id])
 
-  Participant Participant[]
+  participant Participant[]
 }
 
 model User {

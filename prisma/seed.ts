@@ -17,6 +17,12 @@ async function main(){
             title: 'exemple pool',
             code:'boll0',
             ownerId:   user.id,
+
+            Participant:{
+                create:{
+                  userId : user.id  
+                }
+            }
         }
     })
 }
