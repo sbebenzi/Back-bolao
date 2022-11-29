@@ -25,6 +25,38 @@ async function main(){
             }
         }
     })
+
+    await prisma.game.create({
+        data: {
+            date:'2012-11-02T21:27:50.201Z',
+            firstTeamCountryCode:'DE',
+            secondTeamCountryCode:'BR',
+        }
+    })
+
+    await prisma.game.create({
+        data:{
+            date: '2012-11-02T12:27:50.201Z',
+            firstTeamCountryCode:'BR',
+            secondTeamCountryCode:'AG',
+
+            guesses:{
+                create:{
+                    firstteamPoints:2,
+                    secondTeanPoints:0,
+
+                    participant:{
+                        connect:{
+                            userId_poolId:{
+                                userId:user.id,
+                                poolId:pool.id
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    })
 }
 
 main()
