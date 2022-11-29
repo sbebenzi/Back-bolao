@@ -16,35 +16,21 @@ async function start() {
     //  é pra dizer quais aplicacoes vao poder consumir o nosso back
     await fastify.register(cors,{
         origin:true
-        })
+    })
 
         
 
     // rota de contagem de bolao(é o que vai dps de http://localhost/)
-    fastify.get('/pools/count' ,async () =>{
-
-
-    //    const pools= await prisma.pool.findMany({
-    //         where:{
-    //             title:{
-    //                equals: 'quem que dinheiro'
-    //             }
-    //         }
-    //     })
-
-        // return{}
-
-  
-        const qtdpools = await prisma.pool.count({
-            
-        })
-
-
+    fastify.get('/pools/count' ,async () =>{  
+        const qtdpools = await prisma.pool.count()
         return { qtdpools}
-    }
+    })
 
-    )
-// o host é pra funcionar no mobile
+    fastify.post('/pool/create',async()=>{
+    })
+
+    
+    // o host é pra funcionar no mobile
     await fastify.listen({ port:3333, host:'0.0.0.0'})
 }
 
