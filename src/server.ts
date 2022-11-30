@@ -55,13 +55,13 @@ async function start() {
     })
 
     //rota de contagem de usuarios 
-    fastify.get('/pools/count/users' ,async () =>{  
+    fastify.get('/count/users' ,async () =>{  
         const qtdUsers = await prisma.user.count()
         return { qtdUsers}
     })
 
     // rota de contagem de palpites
-    fastify.get('/pools/count/guess' ,async () =>{  
+    fastify.get('/count/guess' ,async () =>{  
         const qtdGuess = await prisma.guess.count()
         return { qtdGuess}
     })
