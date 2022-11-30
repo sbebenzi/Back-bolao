@@ -1,5 +1,6 @@
 import Fastify from 'fastify'
 import cors from '@fastify/cors'
+import {z} from 'zod'
 import {PrismaClient} from '@prisma/client'
 
 const prisma = new PrismaClient({
@@ -26,7 +27,19 @@ async function start() {
         return { qtdpools}
     })
 
-    fastify.post('/pool/create',async()=>{
+    fastify.post('/pools/create',async(request,reply)=>{
+
+        const createPoolBody = z.object({
+            title: z.string()
+        })
+        try{
+            const {title} = createPoolBody.parse(request.body)
+
+        return reply.status(201).send({title})
+        }catch(error){
+            return ("Valor passado como titulo do bolão é invalido!")
+        }
+        
     })
 
     
