@@ -22,7 +22,7 @@ async function start() {
         
 
     // rota de contagem de bolao(é o que vai dps de http://localhost/)
-    fastify.get('/pools/count' ,async () =>{  
+    fastify.get('/count/pools' ,async () =>{  
         const qtdpools = await prisma.pool.count()
         return { qtdpools}
     })
@@ -55,13 +55,13 @@ async function start() {
     })
 
     //rota de contagem de usuarios 
-    fastify.get('/pools/count/users' ,async () =>{  
+    fastify.get('/count/users' ,async () =>{  
         const qtdUsers = await prisma.user.count()
         return { qtdUsers}
     })
 
     // rota de contagem de palpites
-    fastify.get('/pools/count/guess' ,async () =>{  
+    fastify.get('/count/guesses' ,async () =>{  
         const qtdGuess = await prisma.guess.count()
         return { qtdGuess}
     })
