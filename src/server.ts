@@ -2,7 +2,7 @@ import Fastify from 'fastify'
 import cors from '@fastify/cors'
 import {z} from 'zod'
 import {PrismaClient} from '@prisma/client'
-
+import ShortUniqueId from 'short-unique-id'
 const prisma = new PrismaClient({
     log:['query'],
 })
@@ -35,7 +35,18 @@ async function start() {
         try{
             const {title} = createPoolBody.parse(request.body)
 
-        return reply.status(201).send({title})
+            const generate = new ShortUniqueId({length: 6})
+            const code = String(generate()).toUpperCase()
+        
+        await prisma.pool.create({
+            data:{
+                title,
+                code
+            }
+        })
+
+        return reply.status(201).send({title,code})
+
         }catch(error){
             return ("Valor passado como titulo do bolão é invalido!")
         }
