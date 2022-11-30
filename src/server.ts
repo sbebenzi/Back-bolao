@@ -27,6 +27,7 @@ async function start() {
         return { qtdpools}
     })
 
+    //rota de criacao de um novo bolao
     fastify.post('/pools/create',async(request,reply)=>{
 
         const createPoolBody = z.object({
@@ -53,7 +54,18 @@ async function start() {
         
     })
 
-    
+    //rota de contagem de usuarios 
+    fastify.get('/pools/count/users' ,async () =>{  
+        const qtdUsers = await prisma.user.count()
+        return { qtdUsers}
+    })
+
+    // rota de contagem de palpites
+    fastify.get('/pools/count/guess' ,async () =>{  
+        const qtdGuess = await prisma.guess.count()
+        return { qtdGuess}
+    })
+
     // o host é pra funcionar no mobile
     await fastify.listen({ port:3333, host:'0.0.0.0'})
 }
