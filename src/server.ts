@@ -24,7 +24,7 @@ async function start() {
     // rota de contagem de bolao(é o que vai dps de http://localhost/)
     fastify.get('/count/pools' ,async () =>{  
         const qtdpools = await prisma.pool.count()
-        return { qtdpools}
+        return {qtdpools}
     })
 
     //rota de criacao de um novo bolao
@@ -49,7 +49,7 @@ async function start() {
         return reply.status(201).send({title,code})
 
         }catch(error){
-            return ("Valor passado como titulo do bolão é invalido!")
+            return reply.status(400).send("Valor passado como titulo do bolão é invalido!")
         }
         
     })
